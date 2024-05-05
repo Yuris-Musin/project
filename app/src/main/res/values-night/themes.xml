@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Background" parent="Theme.MaterialComponents.Light">
+        <item name="android:background">#D0BCFF</item>
+    </style>
+
+    <style name="Background.Button">
+        <item name="android:background">@drawable/background_button_night</item>
+    </style>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orange">#FFBB32</color>
+    <color name="bottom">#00DAC5</color>
+    <color name="top">#3800B3</color>
+    <color name="bgr_button">#EE09F6</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#6750A4</color>
+</resources>
