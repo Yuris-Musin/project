@@ -23,27 +23,8 @@ class MainActivity : AppCompatActivity() {
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(binding.root)
 
-        val button2 = findViewById<View>(R.id.favorites).setOnClickListener {
-            Toast.makeText(
-                this,
-                "Избранное",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        val button3 = findViewById<View>(R.id.watch_later).setOnClickListener {
-            Toast.makeText(
-                this,
-                "Посмотреть позже",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        val button4 = findViewById<View>(R.id.selections).setOnClickListener {
-            Toast.makeText(
-                this,
-                "Подборки",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+        initNavigation()
+
         val button5 = findViewById<View>(R.id.settings).setOnClickListener {
             Toast.makeText(
                 this,
@@ -97,5 +78,33 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    private fun initNavigation() {
+
+        binding.bottomNavigation?.setOnNavigationItemSelectedListener {
+
+            when (it.itemId) {
+                R.id.favorites -> {
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder, FavoritesFragment())
+                        .addToBackStack(null)
+                        .commit()
+                    true
+                }
+
+                R.id.watch_later -> {
+                    Toast.makeText(this, "Посмотреть похже", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                R.id.selections -> {
+                    Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
 
 }

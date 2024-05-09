@@ -1,5 +1,6 @@
 package ru.musindev.myapp
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
@@ -37,6 +38,7 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
     }
 
     //Метод для добавления объектов в наш список
+    @SuppressLint("NotifyDataSetChanged")
     fun addItems(list: List<Film>) {
         //Сначала очищаем(если не реализовать DiffUtils)
         items.clear()
