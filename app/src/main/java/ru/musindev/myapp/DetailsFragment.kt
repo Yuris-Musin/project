@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ru.musindev.myapp.databinding.FragmentDetailsBinding
+import ru.musindev.myapp.Film as Film
 
+@Suppress("DEPRECATION")
 class DetailsFragment : Fragment() {
-    private lateinit var binding: FragmentDetailsBinding
     private lateinit var film: Film
+    private lateinit var binding: FragmentDetailsBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +44,7 @@ class DetailsFragment : Fragment() {
             //Укзываем action с которым он запускается
             intent.action = Intent.ACTION_SEND
             //Кладем данные о нашем фильме
+
             intent.putExtra(
                 Intent.EXTRA_TEXT,
                 "Check out this film: ${film.title} \n\n ${film.description}"
@@ -55,7 +59,7 @@ class DetailsFragment : Fragment() {
 
     private fun setFilmsDetails() {
         //Получаем наш фильм из переданного бандла
-        val film = arguments?.get("film") as Film
+        film = arguments?.get("film") as Film
         //Устанавливаем заголовок
         binding.detailsToolbar.title = film.title
         //Устанавливаем картинку
@@ -65,7 +69,7 @@ class DetailsFragment : Fragment() {
 
         binding.detailsFabFavorites.setImageResource(
             if (film.isInFavorites) R.drawable.baseline_favorite_border
-            else R.drawable.baseline_favorite_border
+            else R.drawable.favorite
         )
     }
 
