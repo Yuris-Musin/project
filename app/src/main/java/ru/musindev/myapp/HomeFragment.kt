@@ -86,9 +86,7 @@ class HomeFragment : Fragment() {
                         (requireActivity() as MainActivity).launchDetailsFragment(film)
                     }
 
-                    override fun click(film: Film, position: Int) {
-                        TODO("Not yet implemented")
-                    }
+                    override fun click(film: Film, position: Int) { }
                 })
 
 
@@ -103,6 +101,9 @@ class HomeFragment : Fragment() {
 //Кладем нашу БД в RV
         filmsAdapter.addItems(filmsDataBase)
 
+        binding.searchView.setOnClickListener {
+            binding.searchView.isIconified = false
+        }
     }
 
 }

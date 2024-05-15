@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.musindev.myapp.databinding.FragmentFavoritesBinding
-import ru.musindev.myapp.databinding.FragmentHomeBinding
 
 
 class FavoritesFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private lateinit var binding: FragmentFavoritesBinding
+    private val favoritesList: List<Film> = emptyList()
 
 
     override fun onCreateView(
@@ -27,7 +27,7 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Получаем список при транзакции фрагмента
-        val favoritesList: List<Film> = emptyList()
+
 
         binding.favoritesRecycler
             .apply {

@@ -7,8 +7,6 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import ru.musindev.myapp.databinding.ActivityMainBinding
 
 @Suppress("DEPRECATION")
@@ -21,17 +19,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        setContentView(binding.root)
+        val view = binding.root
+        setContentView(view)
 
         initNavigation()
-
-        val button5 = findViewById<View>(R.id.settings).setOnClickListener {
-            Toast.makeText(
-                this,
-                "Настройки",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
 
         supportFragmentManager
             .beginTransaction()
