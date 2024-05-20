@@ -44,6 +44,7 @@ android {
 dependencies {
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
 
 
     implementation(libs.androidx.core.ktx)
