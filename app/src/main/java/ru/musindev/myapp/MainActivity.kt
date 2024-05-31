@@ -1,8 +1,6 @@
 package ru.musindev.myapp
 
-import android.app.AlertDialog
 import android.os.Bundle
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
@@ -48,25 +46,6 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragment_placeholder, fragment)
             .addToBackStack(null)
             .commit()
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        super.onBackPressed()
-
-        AlertDialog.Builder(this)
-            .setTitle("Вы хотите выйти?")
-            .setIcon(R.drawable.ic_menu_gallery)
-            .setPositiveButton("Да") { _, _ ->
-                finish()
-            }
-            .setNegativeButton("Нет") { _, _ ->
-
-            }
-            .setNeutralButton("Не знаю") { _, _ ->
-                Toast.makeText(this, "Решайся", Toast.LENGTH_SHORT).show()
-            }
-            .show()
     }
 
     private fun initNavigation() {
