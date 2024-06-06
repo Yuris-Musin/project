@@ -28,6 +28,7 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //Получаем список при транзакции фрагмента
 
+        AnimationHelper.performFragmentCircularRevealAnimation(binding.favoritesFragmentRoot, requireActivity(), 1)
 
         binding.favoritesRecycler
             .apply {
