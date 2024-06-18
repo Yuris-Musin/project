@@ -8,11 +8,19 @@
     <style name="Theme.MyApp" parent="Base.Theme.MyApp">
 
     </style>
+
     <style name="Background" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:background">@color/top</item>
     </style>
+
     <style name="Background.Button">
         <item name="android:background">@drawable/background_button</item>
+    </style>
+    
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/colorPrimaryDark</item>
+        <item name="postSplashScreenTheme">@style/Theme.MyApp</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/animated_logo</item>
     </style>
 
 </resources>
