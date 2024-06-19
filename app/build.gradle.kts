@@ -46,6 +46,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
 
 
     implementation(libs.androidx.core.ktx)
