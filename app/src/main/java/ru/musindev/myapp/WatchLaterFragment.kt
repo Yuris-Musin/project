@@ -9,12 +9,12 @@ import ru.musindev.myapp.databinding.FragmentWatchLaterBinding
 
 class WatchLaterFragment : Fragment() {
 
-    lateinit var binding: FragmentWatchLaterBinding
+    private lateinit var binding: FragmentWatchLaterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentWatchLaterBinding.inflate(inflater, container, false)
         return binding.root
     }

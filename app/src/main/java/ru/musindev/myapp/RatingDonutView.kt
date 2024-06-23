@@ -1,5 +1,6 @@
 package ru.musindev.myapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -8,6 +9,8 @@ import android.graphics.RectF
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 
 class RatingDonutView @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null) : View(context, attributeSet) {
 
@@ -27,6 +30,7 @@ class RatingDonutView @JvmOverloads constructor(context: Context, attributeSet: 
     private lateinit var strokePaint: Paint
     private lateinit var digitPaint: Paint
     private lateinit var circlePaint: Paint
+    private var inAnimation: Animation = AnimationUtils.loadAnimation(context, R.anim.alpha_in)
 
     init {
         //Получаем атрибуты и устанавливаем их в соответствующие поля
@@ -39,6 +43,7 @@ class RatingDonutView @JvmOverloads constructor(context: Context, attributeSet: 
         } finally {
             a.recycle()
         }
+
         //Инициализируем первоначальные краски
         initPaint()
     }
@@ -60,6 +65,8 @@ class RatingDonutView @JvmOverloads constructor(context: Context, attributeSet: 
 
         val chosenWidth = chooseDimension(widthMode, widthSize)
         val chosenHeight = chooseDimension(heightMode, heightSize)
+
+
 
         val minSide = Math.min(chosenWidth, chosenHeight)
         centerX = minSide.div(2f)
@@ -102,6 +109,7 @@ class RatingDonutView @JvmOverloads constructor(context: Context, attributeSet: 
 
     private fun convertProgressToDegrees(progress: Int): Float = progress * 3.6f
 
+    @SuppressLint("DefaultLocale")
     private fun drawText(canvas: Canvas) {
         //Форматируем текст, чтобы мы выводили дробное число с одной цифрой после точки
         val message = String.format("%.1f", progress / 10f)
@@ -126,6 +134,7 @@ class RatingDonutView @JvmOverloads constructor(context: Context, attributeSet: 
         //Краска для колец
         strokePaint = Paint().apply {
             style = Paint.Style.STROKE
+
             //Сюда кладем значение из поля класса, потому как у нас краски будут видоизменяться
             strokeWidth = stroke
             //Цвет мы тоже будем получать в специальном методе, потому что в зависимости от рейтинга

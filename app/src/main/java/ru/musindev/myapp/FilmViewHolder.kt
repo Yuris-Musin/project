@@ -1,6 +1,8 @@
 package ru.musindev.myapp
 
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +32,7 @@ class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .into(poster)
         //Устанавливаем описание
         description.text = film.description
+        //Устанавливаем рейтинг
         ratingDonut.setProgress((film.rating * 10).toInt())
     }
 }
