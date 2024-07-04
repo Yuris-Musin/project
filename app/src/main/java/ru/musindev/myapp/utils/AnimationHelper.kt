@@ -1,4 +1,4 @@
-package ru.musindev.myapp
+package ru.musindev.myapp.utils
 
 import android.app.Activity
 import android.view.View

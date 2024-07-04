@@ -1,4 +1,4 @@
-package ru.musindev.myapp
+package ru.musindev.myapp.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import ru.musindev.myapp.R
 import ru.musindev.myapp.databinding.FragmentDetailsBinding
-import ru.musindev.myapp.Film as Film
+import ru.musindev.myapp.domain.Film
 
 @Suppress("DEPRECATION")
 class DetailsFragment : Fragment() {

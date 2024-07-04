@@ -1,10 +1,13 @@
-package ru.musindev.myapp
+package ru.musindev.myapp.view.rv_adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import ru.musindev.myapp.R
+import ru.musindev.myapp.domain.Film
+import ru.musindev.myapp.view.rv_viewholders.FilmViewHolder
 
 //в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity
 class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

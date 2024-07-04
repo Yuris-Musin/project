@@ -1,21 +1,10 @@
-package ru.musindev.myapp
+package ru.musindev.myapp.data
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.SearchView
-import androidx.recyclerview.widget.LinearLayoutManager
-import ru.musindev.myapp.databinding.FragmentHomeBinding
-import java.util.Locale
+import ru.musindev.myapp.R
+import ru.musindev.myapp.domain.Film
 
-
-class HomeFragment : Fragment() {
-
-    private lateinit var filmsAdapter: FilmListRecyclerAdapter
-    private lateinit var binding: FragmentHomeBinding
-    private val filmsDataBase = listOf(
+class MainRepository {
+    val filmsDataBase = listOf(
         Film(
             "Хватай и беги",
             R.drawable.film_01,
@@ -67,71 +56,4 @@ class HomeFragment : Fragment() {
             "Полиция Чикаго так и не смогла поймать серийного убийцу, который несколько лет держал город в страхе. Но однажды он исчез — так же неожиданно, как и появился. Все забыли о жестоком преступнике. Все, кроме детектива, который расследовал его дело. Спустя пять лет в Шотландии начали происходить убийства с тем же почерком. Детективу придется отправиться на другой конец света, чтобы, наконец, поймать убийцу и отомстить за смерть своей любимой.", 9.5f
         ),
     )
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        AnimationHelper.performFragmentCircularRevealAnimation(binding.homeBar, requireActivity(), 1)
-
-        binding.mainRecycler.apply {
-            //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
-            //оставим его пока пустым, он нам понадобится во второй части задания
-            filmsAdapter =
-                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
-                    override fun click(film: Film) {
-                        (requireActivity() as MainActivity).launchDetailsFragment(film)
-                    }
-
-                    override fun click(film: Film, position: Int) { }
-                })
-
-
-            //Присваиваем адаптер
-            adapter = filmsAdapter
-            //Присвои layoutmanager
-            layoutManager = LinearLayoutManager(requireContext())
-            //Применяем декоратор для отступов
-            val decorator = TopSpacingItemDecoration(8)
-            addItemDecoration(decorator)
-        }
-//Кладем нашу БД в RV
-        filmsAdapter.addItems(filmsDataBase)
-
-        binding.searchView.setOnClickListener {
-            binding.searchView.isIconified = false
-        }
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            //Этот метод отрабатывает при нажатии кнопки "поиск" на софт клавиатуре
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-            //Этот метод отрабатывает на каждое изменения текста
-            override fun onQueryTextChange(newText: String?): Boolean {
-                //Если ввод пуст то вставляем в адаптер всю БД
-                if (newText!!.isEmpty()) {
-                    filmsAdapter.addItems(filmsDataBase)
-                    return true
-                }
-                //Фильтруем список на поискк подходящих сочетаний
-                val result = filmsDataBase.filter {
-                    //Чтобы все работало правильно, нужно и запроси и имя фильма приводить к нижнему регистру
-                    it.title.lowercase(Locale.getDefault()).contains(newText.lowercase(Locale.getDefault()))
-                }
-                //Добавляем в адаптер
-                filmsAdapter.addItems(result)
-                return true
-            }
-        })
-
-    }
-
 }
-

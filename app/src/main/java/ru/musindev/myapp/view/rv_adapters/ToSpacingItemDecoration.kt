@@ -1,4 +1,4 @@
-package ru.musindev.myapp
+package ru.musindev.myapp.view.rv_adapters
 
 import android.content.res.Resources
 import android.graphics.Rect

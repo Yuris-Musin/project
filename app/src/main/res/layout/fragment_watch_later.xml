@@ -5,6 +5,6 @@
     android:layout_height="match_parent"
     android:id="@+id/watch_later_fragment_root"
     android:background="@drawable/background_later"
-    tools:context=".WatchLaterFragment">
+    tools:context=".view.fragments.WatchLaterFragment">
 
 </FrameLayout>
