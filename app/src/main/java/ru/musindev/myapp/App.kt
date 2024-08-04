@@ -12,9 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class App : Application() {
-    lateinit var repo: MainRepository
+    private lateinit var repo: MainRepository
     lateinit var interactor: Interactor
-    lateinit var retrofitService: TmdbApi
+    private lateinit var retrofitService: TmdbApi
 
     override fun onCreate() {
         super.onCreate()
@@ -22,9 +22,9 @@ class App : Application() {
         instance = this
         //Инициализируем репозиторий
         repo = MainRepository()
-        //Создаем кастомный клиент
+        //Создаём кастомный клиент
         val okHttpClient = OkHttpClient.Builder()
-            //Настриваем таймауты для медленного интрнета
+            //Настраиваем таймауты для медленного интернета
             .callTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             //Добавляем логгер
@@ -34,7 +34,7 @@ class App : Application() {
                 }
             })
             .build()
-        //Создаем ретрофит
+        //Создаем Ретрофит
         val retrofit = Retrofit.Builder()
             //Указываем базовый URL из констант
             .baseUrl(ApiConstants.BASE_URL)
@@ -45,7 +45,7 @@ class App : Application() {
             .build()
         //Создаем сам сервис с методами для запросов
         retrofitService = retrofit.create(TmdbApi::class.java)
-        //Инициализируем интерактор
+    //Инициализируем интерактор
         interactor = Interactor(repo, retrofitService)
     }
 

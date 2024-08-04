@@ -1,6 +1,6 @@
 package ru.musindev.myapp.data
 
-import ru.musindev.myapp.data.Entity.TmdbResults
+import ru.musindev.myapp.domain.TmdbResultsDto
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,5 +11,5 @@ interface TmdbApi {
         @Query("api_key") apiKey: String,
         @Query("language") language: String,
         @Query("page") page: Int
-    ): Call<TmdbResults>
+    ): Call<TmdbResultsDto>
 }

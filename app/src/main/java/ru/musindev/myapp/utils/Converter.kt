@@ -1,6 +1,6 @@
 package ru.musindev.myapp.utils
 
-import ru.musindev.myapp.data.Entity.TmdbFilm
+import ru.musindev.myapp.domain.TmdbFilm
 import ru.musindev.myapp.domain.Film
 
 object Converter {

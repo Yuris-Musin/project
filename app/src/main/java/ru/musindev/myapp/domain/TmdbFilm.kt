@@ -1,4 +1,4 @@
-package ru.musindev.myapp.data.Entity
+package ru.musindev.myapp.domain
 
 import com.google.gson.annotations.SerializedName
 

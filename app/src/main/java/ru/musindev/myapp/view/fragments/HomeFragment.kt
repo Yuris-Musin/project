@@ -59,7 +59,6 @@ class HomeFragment : Fragment() {
                         (requireActivity() as MainActivity).launchDetailsFragment(film)
                     }
 
-                    override fun click(film: Film, position: Int) { }
                 })
 
 
