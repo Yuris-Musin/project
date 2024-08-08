@@ -43,9 +43,6 @@ class FavoritesFragment : Fragment() {
                             (requireActivity() as MainActivity).launchDetailsFragment(film)
                         }
 
-                        override fun click(film: Film, position: Int) {
-                            TODO("Not yet implemented")
-                        }
                     })
                 //Присваиваем адаптер
                 adapter = filmsAdapter
