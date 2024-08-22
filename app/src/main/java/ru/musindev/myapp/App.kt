@@ -2,6 +2,7 @@ package ru.musindev.myapp
 
 import android.app.Application
 import ru.musindev.myapp.di.AppComponent
+import ru.musindev.myapp.di.DaggerAppComponent
 
 class App : Application() {
     lateinit var dagger: AppComponent
