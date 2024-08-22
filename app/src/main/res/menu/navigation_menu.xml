@@ -20,4 +20,9 @@
         android:id="@+id/selections"
         android:icon="@drawable/podbor"
         android:title="@string/button4"/>
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_round_settings_24"
+        android:title="@string/button5"
+        app:showAsAction="withText"/>
 </menu>

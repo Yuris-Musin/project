@@ -5,6 +5,7 @@ import ru.musindev.myapp.di.modules.DatabaseModule
 import ru.musindev.myapp.di.modules.DomainModule
 import ru.musindev.myapp.di.modules.RemoteModule
 import ru.musindev.myapp.viewmodel.HomeFragmentViewModel
+import ru.musindev.myapp.viewmodel.SettingsFragmentViewModel
 import javax.inject.Singleton
 
 @Singleton
@@ -17,6 +18,8 @@ import javax.inject.Singleton
     ]
 )
 interface AppComponent {
-    //метод для того, чтобы внедрять зависимости в HomeFragmentViewModel
+    //метод для того, чтобы появилась возможность внедрять зависимости в HomeFragmentViewModel
     fun inject(homeFragmentViewModel: HomeFragmentViewModel)
+    //метод для того, чтобы появилась возможность внедрять зависимости в SettingsFragmentViewModel
+    fun inject(settingsFragmentViewModel: SettingsFragmentViewModel)
 }

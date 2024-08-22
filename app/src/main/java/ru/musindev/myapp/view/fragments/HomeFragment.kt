@@ -9,7 +9,6 @@ import android.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.musindev.myapp.R
 import ru.musindev.myapp.databinding.FragmentHomeBinding
 import ru.musindev.myapp.domain.Film
 import ru.musindev.myapp.utils.AnimationHelper
@@ -20,6 +19,7 @@ import ru.musindev.myapp.viewmodel.HomeFragmentViewModel
 import java.util.Locale
 
 
+@Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
@@ -38,6 +38,11 @@ class HomeFragment : Fragment() {
             filmsAdapter.addItems(field)
         }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
@@ -50,37 +55,6 @@ class HomeFragment : Fragment() {
 
         AnimationHelper.performFragmentCircularRevealAnimation(binding.homeBar, requireActivity(), 1)
 
-        binding.mainRecycler.apply {
-            //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
-            //оставим его пока пустым, он нам понадобится во второй части задания
-            filmsAdapter =
-                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
-                    override fun click(film: Film) {
-                        (requireActivity() as MainActivity).launchDetailsFragment(film)
-                    }
-
-                })
-
-
-            //Присваиваем адаптер
-            adapter = filmsAdapter
-            //Присвои layoutmanager
-            layoutManager = LinearLayoutManager(requireContext())
-            //Применяем декоратор для отступов
-            val decorator = TopSpacingItemDecoration(8)
-            addItemDecoration(decorator)
-        }
-
-        viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
-            filmsDataBase = it
-        })
-
-//Кладем нашу БД в RV
-        filmsAdapter.addItems(filmsDataBase)
-
-        binding.searchView.setOnClickListener {
-            binding.searchView.isIconified = false
-        }
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             //Этот метод отрабатывает при нажатии кнопки "поиск" на софт клавиатуре
@@ -105,6 +79,44 @@ class HomeFragment : Fragment() {
             }
         })
 
+        initPullToRefresh()
+
+        binding.mainRecycler.apply {
+            //Инициализируем наш адаптер в конструктор передаем анонимно инициализированный интерфейс,
+            //оставим его пока пустым, он нам понадобится во второй части задания
+            filmsAdapter =
+                FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener {
+                    override fun click(film: Film) {
+                        (requireActivity() as MainActivity).launchDetailsFragment(film)
+                    }
+                })
+            //Присваиваем адаптер
+            adapter = filmsAdapter
+            //Присвои layoutmanager
+            layoutManager = LinearLayoutManager(requireContext())
+            //Применяем декоратор для отступов
+            val decorator = TopSpacingItemDecoration(8)
+            addItemDecoration(decorator)
+        }
+
+        //Кладем нашу БД в RV
+        viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
+            filmsDataBase = it
+            filmsAdapter.addItems(it)
+        })
+
+    }
+
+    private fun initPullToRefresh() {
+        //Вешаем слушатель, чтобы вызвался pull to refresh
+        binding.pullToRefresh.setOnRefreshListener {
+            //Чистим адаптер(items нужно будет сделать паблик или создать для этого публичный метод)
+            filmsAdapter.items.clear()
+            //Делаем новый запрос фильмов на сервер
+            viewModel.getFilms()
+            //Убираем крутящееся колечко
+            binding.pullToRefresh.isRefreshing = false
+        }
     }
 
 }

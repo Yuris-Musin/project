@@ -13,6 +13,7 @@ import ru.musindev.myapp.view.fragments.DetailsFragment
 import ru.musindev.myapp.view.fragments.FavoritesFragment
 import ru.musindev.myapp.view.fragments.HomeFragment
 import ru.musindev.myapp.view.fragments.SelectionsFragment
+import ru.musindev.myapp.view.fragments.SettingsFragment
 import ru.musindev.myapp.view.fragments.WatchLaterFragment
 
 @Suppress("DEPRECATION")
@@ -88,6 +89,13 @@ class MainActivity : AppCompatActivity() {
                     val tag = "selections"
                     val fragment = checkFragmentExistence(tag)
                     changeFragment( fragment?: SelectionsFragment(), tag)
+                    true
+                }
+
+                R.id.settings -> {
+                    val tag = "settings"
+                    val fragment = checkFragmentExistence(tag)
+                    changeFragment( fragment?: SettingsFragment(), tag)
                     true
                 }
 
