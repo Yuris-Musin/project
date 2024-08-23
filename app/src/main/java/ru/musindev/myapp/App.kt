@@ -1,7 +1,6 @@
 package ru.musindev.myapp
 
 import android.app.Application
-import okhttp3.internal.Internal.instance
 import ru.musindev.myapp.di.AppComponent
 import ru.musindev.myapp.di.DaggerAppComponent
 import ru.musindev.myapp.di.modules.DatabaseModule

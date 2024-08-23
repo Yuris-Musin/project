@@ -13,6 +13,9 @@
     <string name="radio_button_upcoming">Скоро</string>
     <string name="radio_button_playing">В кинотеатрах</string>
     <string name="radio_group_header">Подборка на главном экране:</string>
+    <string name="button_clearCache">Очитстить кэш</string>
+    <string name="button_ClearInCacheBadFilms">Удалить фильмы с рейтингом ниже 7</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
