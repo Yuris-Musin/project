@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.musindev.myapp.databinding.FragmentFavoritesBinding
-import ru.musindev.myapp.domain.Film
+import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.utils.AnimationHelper
 import ru.musindev.myapp.view.rv_adapters.FilmListRecyclerAdapter
 import ru.musindev.myapp.view.MainActivity

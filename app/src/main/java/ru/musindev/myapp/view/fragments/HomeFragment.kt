@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.musindev.myapp.databinding.FragmentHomeBinding
-import ru.musindev.myapp.domain.Film
+import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.utils.AnimationHelper
 import ru.musindev.myapp.view.rv_adapters.FilmListRecyclerAdapter
 import ru.musindev.myapp.view.MainActivity

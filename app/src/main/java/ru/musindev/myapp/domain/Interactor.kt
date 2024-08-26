@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.musindev.myapp.API
+import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.data.MainRepository
 import ru.musindev.myapp.data.PreferenceProvider
 import ru.musindev.myapp.data.TmdbApi
@@ -19,8 +20,8 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
                 //При успехе мы вызываем метод, передаем onSuccess и в этот коллбэк список фильмов
                 val list = Converter.convertApiListToDtoList(response.body()?.tmdbFilms)
                 //Кладем фильмы в бд
-                list.forEach {
-                    repo.putToDb(film = it)
+                list.forEach { _ ->
+                    repo.putToDb(list)
                 }
                 callback.onSuccess(list)
             }
@@ -40,7 +41,4 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
 
     fun getFilmsFromDB(): List<Film> = repo.getAllFromDB()
 
-    fun clearCache() = repo.clearCache()
-
-    fun clearInCacheBadFilms() = repo.clearInCacheBadFilms()
 }

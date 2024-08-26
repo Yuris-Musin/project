@@ -53,6 +53,7 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:3.12.6")
 
     ksp (libs.ksp.dagger)
+    ksp (libs.ksp.room)
     implementation(libs.androidx.lifecycle)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -61,6 +62,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.gridlayout)
     implementation(libs.google.dagger)
+    implementation(libs.androidx.room)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import ru.musindev.myapp.R
-import ru.musindev.myapp.domain.Film
+import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.view.rv_viewholders.FilmViewHolder
 
 //в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса Activity
