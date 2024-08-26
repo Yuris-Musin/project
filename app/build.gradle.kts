@@ -44,13 +44,13 @@ android {
 
 dependencies {
 
-    implementation("androidx.coordinatorlayout:coordinatorlayout:1.1.0")
-    implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation(libs.androidx.coordinatorlayout)
+    implementation(libs.androidx.core)
+    implementation (libs.glide)
 
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.6.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:3.12.6")
+    implementation (libs.retrofit)
+    implementation (libs.gson)
+    implementation (libs.squareup.okhttp3)
 
     ksp (libs.ksp.dagger)
     ksp (libs.ksp.room)
