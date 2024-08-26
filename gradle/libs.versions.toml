@@ -1,4 +1,10 @@
 [versions]
+coordinatorlayout_version = "1.2.0"
+version_core = "1.0.1"
+version_glide = "4.12.0"
+version_retrofit = "2.9.0"
+version_gson = "2.6.0"
+version_okhttp3 = "3.12.6"
 agp = "8.3.2"
 kotlin = "2.0.10"
 coreKtx = "1.13.1"
@@ -14,9 +20,16 @@ ksp = "2.0.10-1.0.24"
 dagger = "2.52"
 lifecycle = "2.8.4"
 kspDagger = "2.52"
+room_version = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-coordinatorlayout = { group = "androidx.coordinatorlayout", name = "coordinatorlayout", version.ref = "coordinatorlayout_version" }
+androidx-core = { group = "androidx.core", name = "core-splashscreen", version.ref = "version_core" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "version_glide" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "version_retrofit" }
+gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "version_gson" }
+squareup-okhttp3 = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "version_okhttp3" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -27,7 +40,9 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
 google-dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger"}
 androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle"}
+androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = "room_version"}
 ksp-dagger = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "kspDagger"}
+ksp-room = { group = "androidx.room", name = "room-compiler", version.ref = "room_version"}
 
 
 [plugins]
