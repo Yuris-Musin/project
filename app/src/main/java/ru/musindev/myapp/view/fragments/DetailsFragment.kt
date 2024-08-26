@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import ru.musindev.myapp.R
 import ru.musindev.myapp.data.ApiConstants
 import ru.musindev.myapp.databinding.FragmentDetailsBinding
-import ru.musindev.myapp.domain.Film
+import ru.musindev.myapp.data.Film
 
 @Suppress("DEPRECATION")
 class DetailsFragment : Fragment() {

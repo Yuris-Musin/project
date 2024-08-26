@@ -3,7 +3,7 @@ package ru.musindev.myapp.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.musindev.myapp.App
-import ru.musindev.myapp.domain.Film
+import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.domain.Interactor
 import javax.inject.Inject
 

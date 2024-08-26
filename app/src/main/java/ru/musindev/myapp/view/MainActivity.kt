@@ -8,7 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import ru.musindev.myapp.R
 import ru.musindev.myapp.databinding.ActivityMainBinding
-import ru.musindev.myapp.domain.Film
+import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.view.fragments.DetailsFragment
 import ru.musindev.myapp.view.fragments.FavoritesFragment
 import ru.musindev.myapp.view.fragments.HomeFragment

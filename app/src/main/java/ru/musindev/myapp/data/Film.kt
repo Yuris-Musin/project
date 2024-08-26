@@ -1,4 +1,4 @@
-package ru.musindev.myapp.domain
+package ru.musindev.myapp.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
