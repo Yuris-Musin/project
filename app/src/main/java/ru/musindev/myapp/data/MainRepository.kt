@@ -2,6 +2,8 @@ package ru.musindev.myapp.data
 
 import android.content.ContentValues
 import android.database.Cursor
+import ru.musindev.myapp.domain.Film
+import ru.musindev.myapp.data.DatabaseHelper
 
 class MainRepository(databaseHelper: DatabaseHelper) {
     //Инициализируем объект для взаимодействия с БД

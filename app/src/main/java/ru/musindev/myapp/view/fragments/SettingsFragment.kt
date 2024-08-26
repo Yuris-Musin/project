@@ -48,12 +48,7 @@ class SettingsFragment : Fragment() {
                 R.id.radio_now_playing -> viewModel.putCategoryProperty(NOW_PLAYING_CATEGORY)
             }
         }
-        binding.buttonClearCache.setOnClickListener{
-            viewModel.interactor.clearCache()
-        }
-        binding.buttonClearInCacheBadFilms.setOnClickListener{
-            viewModel.interactor.clearInCacheBadFilms()
-        }
+
     }
 
     companion object {

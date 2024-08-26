@@ -14,7 +14,6 @@ ksp = "2.0.10-1.0.24"
 dagger = "2.52"
 lifecycle = "2.8.4"
 kspDagger = "2.52"
-room_version = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -26,11 +25,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
-google-dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
-androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-ksp-dagger = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "kspDagger" }
-androidx-room = { group = "androidx.room", name = "room-runtime", version.ref = "room_version" }
-ksp-room = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
+google-dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger"}
+androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle"}
+ksp-dagger = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "kspDagger"}
 
 
 [plugins]
