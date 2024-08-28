@@ -1,5 +1,6 @@
 package ru.musindev.myapp.data
 
+import androidx.lifecycle.LiveData
 import ru.musindev.myapp.data.dao.FilmDao
 import java.util.concurrent.Executors
 
@@ -13,7 +14,5 @@ class MainRepository(private val filmDao: FilmDao) {
         }
     }
 
-    fun getAllFromDB(): List<Film> {
-        return filmDao.getCachedFilms()
-    }
+    fun getAllFromDB(): LiveData<List<Film>> = filmDao.getCachedFilms()
 }
