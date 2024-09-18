@@ -1,6 +1,8 @@
 package ru.musindev.myapp.data
 
+
 import kotlinx.coroutines.flow.Flow
+
 import ru.musindev.myapp.data.dao.FilmDao
 
 class MainRepository(private val filmDao: FilmDao) {
@@ -11,4 +13,5 @@ class MainRepository(private val filmDao: FilmDao) {
     }
 
     fun getAllFromDB(): Flow<List<Film>> = filmDao.getCachedFilms()
+
 }

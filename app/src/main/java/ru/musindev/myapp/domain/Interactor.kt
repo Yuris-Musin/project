@@ -1,5 +1,6 @@
 package ru.musindev.myapp.domain
 
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -39,6 +40,7 @@ class Interactor(
                     repo.putToDb(list)
                     progressBarState.send(false)
                 }
+
             }
             override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
                 //В случае провала вызываем другой метод коллбека
@@ -56,5 +58,4 @@ class Interactor(
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
 
     fun getFilmsFromDB(): Flow<List<Film>> = repo.getAllFromDB()
-
 }

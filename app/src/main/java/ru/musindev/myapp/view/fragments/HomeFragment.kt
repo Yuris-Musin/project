@@ -115,6 +115,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
     }
 
     private fun initPullToRefresh() {
