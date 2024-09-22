@@ -121,7 +121,6 @@ class HomeFragment : Fragment() {
             val decorator = TopSpacingItemDecoration(8)
             addItemDecoration(decorator)
         }
-
     }
 
     private fun initPullToRefresh() {

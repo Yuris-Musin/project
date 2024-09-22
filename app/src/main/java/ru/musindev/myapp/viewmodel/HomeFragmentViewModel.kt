@@ -1,5 +1,6 @@
 package ru.musindev.myapp.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.Observable
@@ -12,8 +13,7 @@ import ru.musindev.myapp.domain.Interactor
 import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
-    val filmsListLiveData: MutableLiveData<List<Film>> = MutableLiveData()
-
+    val showProgressBar: MutableLiveData<Boolean> = MutableLiveData()
     //Инициализируем интерактор
     @Inject
     lateinit var interactor: Interactor

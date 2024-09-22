@@ -1,5 +1,6 @@
 package ru.musindev.myapp.domain
 
+
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -44,6 +45,7 @@ class Interactor(
                     }.subscribeOn(Schedulers.io())
                     .subscribe()
                 progressBarState.onNext(false)
+
             }
             override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
                 //В случае провала вызываем другой метод коллбека
