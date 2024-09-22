@@ -71,4 +71,9 @@ dependencies {
 
     implementation(libs.coroutines)
     implementation(libs.coroutines.core)
+
+    //RxJava
+    implementation (libs.rxandroid)
+    implementation (libs.rxjava)
+    implementation (libs.room.rxjava)
 }

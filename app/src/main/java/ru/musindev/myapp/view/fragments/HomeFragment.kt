@@ -1,5 +1,6 @@
 package ru.musindev.myapp.view.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,14 +9,20 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.observeOn
+import kotlinx.coroutines.flow.subscribe
+import kotlinx.coroutines.flow.subscribeOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.musindev.myapp.databinding.FragmentHomeBinding
 import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.utils.AnimationHelper
+import ru.musindev.myapp.utils.AutoDisposable
 import ru.musindev.myapp.view.rv_adapters.FilmListRecyclerAdapter
 import ru.musindev.myapp.view.MainActivity
 import ru.musindev.myapp.view.rv_adapters.TopSpacingItemDecoration
@@ -26,10 +33,10 @@ import java.util.Locale
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
 
-    private lateinit var scope: CoroutineScope
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
+    private val autoDisposable = AutoDisposable()
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
     private var filmsDataBase = listOf<Film>()
@@ -45,6 +52,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        autoDisposable.bindTo(lifecycle)
         retainInstance = true
     }
 
@@ -55,10 +63,20 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         AnimationHelper.performFragmentCircularRevealAnimation(binding.homeBar, requireActivity(), 1)
+
+        //Кладем нашу БД в RV
+        viewModel.filmsListData
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { list ->
+                filmsAdapter.addItems(list)
+                filmsDataBase = list
+            }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -104,17 +122,6 @@ class HomeFragment : Fragment() {
             addItemDecoration(decorator)
         }
 
-        //Кладем нашу БД в RV
-        scope = CoroutineScope(Dispatchers.IO).also { scope ->
-            scope.launch {
-                viewModel.filmsListData.collect {
-                    withContext(Dispatchers.Main) {
-                        filmsAdapter.addItems(it)
-                        filmsDataBase = it
-                    }
-                }
-            }
-        }
     }
 
     private fun initPullToRefresh() {
@@ -131,7 +138,6 @@ class HomeFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        scope.cancel()
     }
 
 }
