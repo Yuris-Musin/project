@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import ru.musindev.myapp.databinding.FragmentHomeBinding
 import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.utils.AnimationHelper
@@ -22,10 +25,11 @@ import java.util.Locale
 
 @Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
+
+    private lateinit var scope: CoroutineScope
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
-
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
     private var filmsDataBase = listOf<Film>()
@@ -101,14 +105,16 @@ class HomeFragment : Fragment() {
         }
 
         //Кладем нашу БД в RV
-        viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
-            filmsDataBase = it
-            filmsAdapter.addItems(it)
-        })
-
-        viewModel.showProgressBar.observe(viewLifecycleOwner, Observer<Boolean> {
-            binding.progressBar.isVisible = it
-        })
+        scope = CoroutineScope(Dispatchers.IO).also { scope ->
+            scope.launch {
+                viewModel.filmsListData.collect {
+                    withContext(Dispatchers.Main) {
+                        filmsAdapter.addItems(it)
+                        filmsDataBase = it
+                    }
+                }
+            }
+        }
 
     }
 
@@ -122,6 +128,11 @@ class HomeFragment : Fragment() {
             //Убираем крутящееся колечко
             binding.pullToRefresh.isRefreshing = false
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        scope.cancel()
     }
 
 }

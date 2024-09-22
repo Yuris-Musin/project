@@ -63,8 +63,12 @@ dependencies {
     implementation(libs.androidx.gridlayout)
     implementation(libs.google.dagger)
     implementation(libs.androidx.room)
+    implementation ("androidx.room:room-ktx:2.6.1")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.coroutines)
+    implementation(libs.coroutines.core)
 }
