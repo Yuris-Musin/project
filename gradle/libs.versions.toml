@@ -18,7 +18,7 @@ constraintlayout = "2.1.4"
 gridlayout = "1.0.0"
 ksp = "2.0.10-1.0.24"
 dagger = "2.52"
-lifecycle = "2.8.5"
+lifecycle = "2.8.6"
 kspDagger = "2.52"
 room_version = "2.6.1"
 coroutines_core = "1.8.0"
@@ -26,6 +26,8 @@ coroutines = "1.8.0"
 rxandroid_version = "3.0.0"
 rxjava_version = "3.0.10"
 room_rxjava_version = "2.6.1"
+rxjava_retrofit_adapter_version = "3.0.0"
+rxkotlin_version = "3.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +55,8 @@ coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-andro
 rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid_version"}
 rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava_version"}
 room-rxjava = { group = "androidx.room", name = "room-rxjava3", version.ref = "room_rxjava_version"}
+rxjava-retrofit-adapter = { group = "com.github.akarnokd", name = "rxjava3-retrofit-adapter", version.ref = "rxjava_retrofit_adapter_version"}
+rxkotlin = { group = "io.reactivex.rxjava3", name = "rxkotlin", version.ref = "rxkotlin_version"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

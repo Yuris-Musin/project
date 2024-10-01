@@ -1,18 +1,14 @@
 package ru.musindev.myapp.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import ru.musindev.myapp.App
 import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.domain.Interactor
 import javax.inject.Inject
 
 class HomeFragmentViewModel : ViewModel() {
-    val filmsListLiveData: MutableLiveData<List<Film>> = MutableLiveData()
 
     //Инициализируем интерактор
     @Inject
@@ -31,7 +27,5 @@ class HomeFragmentViewModel : ViewModel() {
         interactor.getFilmsFromApi(1)
     }
 
-    interface ApiCallback {
-
-    }
+    fun getSearchResult(search: String) = interactor.getSearchResultFromApi(search)
 }
