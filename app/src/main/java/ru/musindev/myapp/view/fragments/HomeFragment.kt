@@ -132,16 +132,6 @@ class HomeFragment : Fragment() {
             val decorator = TopSpacingItemDecoration(8)
             addItemDecoration(decorator)
         }
-
-        //Кладем нашу БД в RV
-        viewModel.filmsListData
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { list ->
-                filmsAdapter.addItems(list)
-                filmsDataBase = list
-            }
-
     }
 
     private fun initPullToRefresh() {

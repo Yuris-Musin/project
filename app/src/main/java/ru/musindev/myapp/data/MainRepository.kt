@@ -1,6 +1,7 @@
 package ru.musindev.myapp.data
 
 import io.reactivex.rxjava3.core.Observable
+
 import ru.musindev.myapp.data.dao.FilmDao
 
 class MainRepository(private val filmDao: FilmDao) {
@@ -11,4 +12,5 @@ class MainRepository(private val filmDao: FilmDao) {
     }
 
     fun getAllFromDB(): Observable<List<Film>> = filmDao.getCachedFilms()
+
 }
