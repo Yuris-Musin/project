@@ -23,6 +23,9 @@ kspDagger = "2.52"
 room_version = "2.6.1"
 coroutines_core = "1.8.0"
 coroutines = "1.8.0"
+rxandroid_version = "3.0.0"
+rxjava_version = "3.0.10"
+room_rxjava_version = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,7 +50,9 @@ ksp-dagger = { group = "com.google.dagger", name = "dagger-compiler", version.re
 ksp-room = { group = "androidx.room", name = "room-compiler", version.ref = "room_version"}
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines_core"}
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines"}
-
+rxandroid = { group = "io.reactivex.rxjava3", name = "rxandroid", version.ref = "rxandroid_version"}
+rxjava = { group = "io.reactivex.rxjava3", name = "rxjava", version.ref = "rxjava_version"}
+room-rxjava = { group = "androidx.room", name = "room-rxjava3", version.ref = "room_rxjava_version"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

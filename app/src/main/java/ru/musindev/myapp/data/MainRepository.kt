@@ -1,7 +1,6 @@
 package ru.musindev.myapp.data
 
-
-import kotlinx.coroutines.flow.Flow
+import io.reactivex.rxjava3.core.Observable
 
 import ru.musindev.myapp.data.dao.FilmDao
 
@@ -12,6 +11,6 @@ class MainRepository(private val filmDao: FilmDao) {
         filmDao.insertAll(films)
     }
 
-    fun getAllFromDB(): Flow<List<Film>> = filmDao.getCachedFilms()
+    fun getAllFromDB(): Observable<List<Film>> = filmDao.getCachedFilms()
 
 }
