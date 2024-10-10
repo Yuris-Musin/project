@@ -2,7 +2,7 @@ package ru.musindev.myapp.di.modules
 
 import android.content.Context
 import ru.musindev.myapp.data.MainRepository
-import ru.musindev.myapp.data.TmdbApi
+import ru.musindev.remote_module.TmdbApi
 import ru.musindev.myapp.domain.Interactor
 import dagger.Module
 import dagger.Provides
@@ -23,5 +23,11 @@ class DomainModule(val context: Context) {
 
     @Singleton
     @Provides
-    fun provideInteractor(repository: MainRepository, tmdbApi: TmdbApi, preferenceProvider: PreferenceProvider) = Interactor(repo = repository, retrofitService = tmdbApi, preferences = preferenceProvider)
+    fun provideInteractor(
+        repository: MainRepository,
+        tmdbApi: TmdbApi,
+        preferenceProvider: PreferenceProvider) = Interactor(
+        repo = repository,
+        retrofitService = tmdbApi,
+        preferences = preferenceProvider)
 }
