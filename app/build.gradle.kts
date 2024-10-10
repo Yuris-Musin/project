@@ -77,6 +77,8 @@ dependencies {
     implementation (libs.rxandroid)
     implementation (libs.rxjava)
     implementation (libs.room.rxjava)
-    implementation ("io.reactivex.rxjava3:rxkotlin:3.0.1")
+
+    implementation(libs.rxjava.retrofit.adapter)
+    implementation (libs.rxkotlin)
 
 }
