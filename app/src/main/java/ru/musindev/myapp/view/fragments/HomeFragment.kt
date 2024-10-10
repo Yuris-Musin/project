@@ -11,14 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.observeOn
-import kotlinx.coroutines.flow.subscribe
-import kotlinx.coroutines.flow.subscribeOn
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import ru.musindev.myapp.databinding.FragmentHomeBinding
 import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.utils.AnimationHelper
