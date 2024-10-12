@@ -1,5 +1,8 @@
 package ru.musindev.myapp.view
 
+import android.content.BroadcastReceiver
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
@@ -9,6 +12,7 @@ import androidx.fragment.app.Fragment
 import ru.musindev.myapp.R
 import ru.musindev.myapp.databinding.ActivityMainBinding
 import ru.musindev.myapp.data.Film
+import ru.musindev.myapp.receivers.ConnectionChecker
 import ru.musindev.myapp.view.fragments.DetailsFragment
 import ru.musindev.myapp.view.fragments.FavoritesFragment
 import ru.musindev.myapp.view.fragments.HomeFragment
@@ -20,6 +24,7 @@ import ru.musindev.myapp.view.fragments.WatchLaterFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var receiver: BroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +43,16 @@ class MainActivity : AppCompatActivity() {
             .addToBackStack(null)
             .commit()
 
+        receiver = ConnectionChecker()
+        val filters = IntentFilter().apply {
+            addAction(Intent.ACTION_POWER_CONNECTED)
+            addAction(Intent.ACTION_BATTERY_LOW)
+        }
+        registerReceiver(receiver, filters)
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(receiver)
     }
 
     fun launchDetailsFragment(film: Film) {

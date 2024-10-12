@@ -18,6 +18,8 @@
     <string name="permission_storage">Нет разрешения. Пожалуйста, предоставьте разрешение</string>
     <string name="downloaded_to_gallery">"Сохранено в галерею"</string>
     <string name="open">В галерею</string>
+    <string name="toast_battery_low">Батарея разряжена</string>
+    <string name="toast_power_connected">Зарядка подключена</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

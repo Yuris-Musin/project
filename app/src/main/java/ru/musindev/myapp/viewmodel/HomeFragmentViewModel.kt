@@ -14,7 +14,7 @@ class HomeFragmentViewModel : ViewModel() {
     @Inject
     lateinit var interactor: Interactor
     val filmsListData : Observable<List<Film>>
-    private val showProgressBar: BehaviorSubject<Boolean>
+    val showProgressBar: BehaviorSubject<Boolean>
 
     init {
         App.instance.dagger.inject(this)
