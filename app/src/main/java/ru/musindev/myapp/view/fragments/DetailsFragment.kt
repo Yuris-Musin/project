@@ -24,7 +24,7 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import ru.musindev.myapp.R
-import ru.musindev.myapp.data.ApiConstants
+import ru.musindev.remote_module.entity.ApiConstants
 import ru.musindev.myapp.databinding.FragmentDetailsBinding
 import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.viewmodel.DetailsFragmentViewModel

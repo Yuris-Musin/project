@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import ru.musindev.myapp.R
-import ru.musindev.myapp.data.ApiConstants
+import ru.musindev.remote_module.entity.ApiConstants
 import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.view.customviews.RatingDonutView
 

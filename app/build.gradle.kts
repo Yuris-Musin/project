@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.androidx.gridlayout)
     implementation(libs.google.dagger)
     implementation(libs.androidx.room)
+    implementation(project(":remote_module"))
     implementation ("androidx.room:room-ktx:2.6.1")
 
     testImplementation(libs.junit)
@@ -76,6 +77,8 @@ dependencies {
     implementation (libs.rxandroid)
     implementation (libs.rxjava)
     implementation (libs.room.rxjava)
+
     implementation(libs.rxjava.retrofit.adapter)
     implementation (libs.rxkotlin)
+
 }
