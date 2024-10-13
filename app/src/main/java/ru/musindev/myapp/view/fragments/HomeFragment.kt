@@ -1,30 +1,29 @@
 package ru.musindev.myapp.view.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.musindev.myapp.view.rv_adapters.FilmListRecyclerAdapter
+import ru.musindev.myapp.view.MainActivity
+import ru.musindev.myapp.view.rv_adapters.TopSpacingItemDecoration
+import ru.musindev.myapp.databinding.FragmentHomeBinding
+import java.util.Locale
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
-import ru.musindev.myapp.databinding.FragmentHomeBinding
 import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.utils.AnimationHelper
 import ru.musindev.myapp.utils.AutoDisposable
 import ru.musindev.myapp.utils.addTo
-import ru.musindev.myapp.view.rv_adapters.FilmListRecyclerAdapter
-import ru.musindev.myapp.view.MainActivity
-import ru.musindev.myapp.view.rv_adapters.TopSpacingItemDecoration
 import ru.musindev.myapp.viewmodel.HomeFragmentViewModel
-import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 
@@ -61,7 +60,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("CheckResult")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -74,8 +72,7 @@ class HomeFragment : Fragment() {
             //Вешаем слушатель на клавиатуру
             binding.searchView.setOnQueryTextListener(object :
             //Вызывается на ввод символов
-                SearchView.OnQueryTextListener,
-                androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String): Boolean {
                     filmsAdapter.items.clear()
                     subscriber.onNext(newText)
@@ -145,10 +142,4 @@ class HomeFragment : Fragment() {
             binding.pullToRefresh.isRefreshing = false
         }
     }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
 }
-
