@@ -27,6 +27,7 @@ import ru.musindev.myapp.R
 import ru.musindev.remote_module.entity.ApiConstants
 import ru.musindev.myapp.databinding.FragmentDetailsBinding
 import ru.musindev.myapp.data.Film
+import ru.musindev.myapp.view.notifications.NotificationHelper
 import ru.musindev.myapp.viewmodel.DetailsFragmentViewModel
 
 
@@ -82,6 +83,10 @@ class DetailsFragment : Fragment() {
 
         binding.detailsFabDownloadWp.setOnClickListener {
             performAsyncLoadOfPoster()
+        }
+
+        binding.detailsFabWatchLater.setOnClickListener {
+            NotificationHelper.createNotification(requireContext(), film)
         }
 
     }
