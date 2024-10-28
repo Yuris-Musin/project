@@ -5,8 +5,6 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import ru.musindev.myapp.API
 import ru.musindev.myapp.data.Film
 import ru.musindev.myapp.data.MainRepository
@@ -19,7 +17,6 @@ class Interactor(
     private val retrofitService: TmdbApi,
     private val preferences: PreferenceProvider) {
 
-    val scope: CoroutineScope = CoroutineScope(Dispatchers.IO)
     var progressBarState: BehaviorSubject<Boolean> = BehaviorSubject.create()
 
     @SuppressLint("CheckResult")

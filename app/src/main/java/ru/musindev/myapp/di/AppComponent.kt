@@ -3,7 +3,6 @@ package ru.musindev.myapp.di
 import dagger.Component
 import ru.musindev.myapp.di.modules.DatabaseModule
 import ru.musindev.myapp.di.modules.DomainModule
-import ru.musindev.myapp.di.modules.RemoteModule
 import ru.musindev.myapp.viewmodel.HomeFragmentViewModel
 import ru.musindev.myapp.viewmodel.SettingsFragmentViewModel
 import ru.musindev.remote_module.RemoteProvider
@@ -14,7 +13,6 @@ import javax.inject.Singleton
     //Внедряем все модули, нужные для этого компонента
     dependencies = [RemoteProvider::class],
     modules = [
-        RemoteModule::class,
         DatabaseModule::class,
         DomainModule::class
     ]
