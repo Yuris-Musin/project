@@ -17,7 +17,9 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import ru.musindev.myapp.R
 import ru.musindev.myapp.data.Film
+import ru.musindev.myapp.data.WatchLater
 import ru.musindev.myapp.receivers.ReminderBroadcast
+import ru.musindev.myapp.utils.WatchLaterRepository
 import ru.musindev.myapp.view.MainActivity
 import java.util.*
 
@@ -78,6 +80,7 @@ object NotificationHelper {
         val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
         val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
         val currentMinute = calendar.get(Calendar.MINUTE)
+
         DatePickerDialog(
             context,
             { _, dpdYear, dpdMonth, dayOfMonth ->
@@ -124,7 +127,7 @@ object NotificationHelper {
             context,
             0,
             intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         //Устанавливаем Alarm
         alarmManager.set(
@@ -132,5 +135,24 @@ object NotificationHelper {
             dateTimeInMillis,
             pendingIntent
         )
+        // Добавляем напоминание в репозиторий
+        WatchLaterRepository.watchLaterList.add(WatchLater(film, dateTimeInMillis))
+    }
+    fun deleteReminder(context: Context, film: Film?) {
+        // Убедитесь, что передается корректный Intent для удаления
+        val intent = Intent(context, ReminderBroadcast::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            0,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        // Получаем доступ к AlarmManager и отменяем будильник
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.cancel(pendingIntent)
+
+        // Удаление из списка "Посмотреть позже"
+        WatchLaterRepository.watchLaterList.removeIf { it.film == film }
     }
 }
