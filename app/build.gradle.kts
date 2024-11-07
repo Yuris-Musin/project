@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleDevtoolsKsp)
     id("kotlin-parcelize")
+    alias(libs.plugins.googleGmsGoogleServices)
 }
 
 android {
@@ -51,6 +52,7 @@ dependencies {
     implementation (libs.retrofit)
     implementation (libs.gson)
     implementation (libs.squareup.okhttp3)
+    implementation(libs.firebase.messaging)
 
     ksp (libs.ksp.dagger)
     ksp (libs.ksp.room)
@@ -73,7 +75,7 @@ dependencies {
     implementation(libs.coroutines)
     implementation(libs.coroutines.core)
 
-    //RxJava
+    /* RxJava */
     implementation (libs.rxandroid)
     implementation (libs.rxjava)
     implementation (libs.room.rxjava)
