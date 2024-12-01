@@ -26,6 +26,25 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:414587846469:android:e56e13e9074a259336c82c",
+        "android_client_info": {
+          "package_name": "ru.musindev.myapp.basic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYmx-GMutzNmRKRHXBMI-wG8ICqMMzaY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:414587846469:android:69b5b903340c0b1f36c82c",
         "android_client_info": {
           "package_name": "ru.musindev.myapp.pro"

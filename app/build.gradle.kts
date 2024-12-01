@@ -41,6 +41,31 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    flavorDimensions += "version"
+    productFlavors {
+        create("basic") {
+            dimension = "version"
+            applicationIdSuffix = ".basic"
+            versionNameSuffix = "-basic"
+        }
+        create("pro") {
+            dimension = "version"
+            applicationIdSuffix = ".pro"
+            versionNameSuffix = "-pro"
+        }
+    }
+    sourceSets {
+        getByName("basic") {
+            java {
+                srcDirs("src\\basic\\java")
+            }
+        }
+        getByName("pro") {
+            java {
+                srcDirs("src\\pro\\java")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -83,7 +108,5 @@ dependencies {
 
     implementation(libs.rxjava.retrofit.adapter)
     implementation (libs.rxkotlin)
-
-    implementation("com.google.firebase:firebase-config:22.0.1")
 
 }

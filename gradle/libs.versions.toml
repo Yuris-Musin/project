@@ -28,9 +28,9 @@ rxjava_version = "3.0.10"
 room_rxjava_version = "2.6.1"
 rxjava_retrofit_adapter_version = "3.0.0"
 rxkotlin_version = "3.0.1"
-googleGmsGoogleServices = "4.4.2"
 firebaseMessaging = "24.0.3"
 firebaseConfig = "22.0.1"
+googleGmsGoogleServices = "4.4.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
