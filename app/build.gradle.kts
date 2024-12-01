@@ -53,6 +53,7 @@ dependencies {
     implementation (libs.gson)
     implementation (libs.squareup.okhttp3)
     implementation(libs.firebase.messaging)
+    implementation(libs.firebase.config)
 
     ksp (libs.ksp.dagger)
     ksp (libs.ksp.room)
@@ -82,5 +83,7 @@ dependencies {
 
     implementation(libs.rxjava.retrofit.adapter)
     implementation (libs.rxkotlin)
+
+    implementation("com.google.firebase:firebase-config:22.0.1")
 
 }

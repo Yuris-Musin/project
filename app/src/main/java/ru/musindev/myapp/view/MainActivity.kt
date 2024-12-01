@@ -4,11 +4,15 @@ import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import ru.musindev.myapp.App
 import ru.musindev.myapp.R
 import ru.musindev.myapp.databinding.ActivityMainBinding
 import ru.musindev.myapp.data.Film
@@ -31,7 +35,10 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        this.window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         val view = binding.root
         setContentView(view)
 
@@ -49,7 +56,52 @@ class MainActivity : AppCompatActivity() {
             addAction(Intent.ACTION_BATTERY_LOW)
         }
         registerReceiver(receiver, filters)
+
+        if (!App.instance.isPromoShown) {
+            //Получаем доступ к Remote Config
+            val firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+            //Устанавливаем настройки
+            val configSettings = FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(0)
+                .build()
+            firebaseRemoteConfig.setConfigSettingsAsync(configSettings)
+            //Вызываем метод, который получит данные с сервера и вешаем слушатель
+            firebaseRemoteConfig.fetch()
+                .addOnCompleteListener {
+                    //Если все получилось успешно
+                    if (it.isSuccessful) {
+                        //активируем последний полученный конфиг с сервера
+                        firebaseRemoteConfig.activate()
+                        //Получаем ссылку
+                        val filmLink = firebaseRemoteConfig.getString("film_link")
+                        //Если поле не пустое
+                        if (filmLink.isNotBlank
+                                ()
+                        ) {
+                            //Ставим флаг, что уже промо показали
+                            App.instance.isPromoShown = true
+                            //Включаем промо верстку
+                            binding.promoViewGroup?.apply {
+                                //Делаем видимой
+                                visibility = View.VISIBLE
+                                //Анимируем появление
+                                animate()
+                                    .setDuration(1500)
+                                    .alpha(1f)
+                                    .start()
+                                //Вызываем метод, который загрузит постер в ImageView
+                                setLinkForPoster(filmLink)
+                                //Кнопка, по нажатии на которую промо уберется (желательно сделать отдельную кнопку с крестиком)
+                                watchButton.setOnClickListener {
+                                    visibility = View.GONE
+                                }
+                            }
+                        }
+                    }
+                }
+        }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(receiver)
@@ -83,34 +135,35 @@ class MainActivity : AppCompatActivity() {
                     val fragment = checkFragmentExistence(tag)
                     //В первом параметре, если фрагмент не найден и метод вернул null, то с помощью
                     //элвиса мы вызываем создание нового фрагмента
-                    changeFragment( fragment?: HomeFragment(), tag)
+                    changeFragment(fragment ?: HomeFragment(), tag)
                     true
                 }
+
                 R.id.favorites -> {
                     val tag = "favorites"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: FavoritesFragment(), tag)
+                    changeFragment(fragment ?: FavoritesFragment(), tag)
                     true
                 }
 
                 R.id.watch_later -> {
                     val tag = "watch_later"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: WatchLaterFragment(), tag)
+                    changeFragment(fragment ?: WatchLaterFragment(), tag)
                     true
                 }
 
                 R.id.selections -> {
                     val tag = "selections"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: SelectionsFragment(), tag)
+                    changeFragment(fragment ?: SelectionsFragment(), tag)
                     true
                 }
 
                 R.id.settings -> {
                     val tag = "settings"
                     val fragment = checkFragmentExistence(tag)
-                    changeFragment( fragment?: SettingsFragment(), tag)
+                    changeFragment(fragment ?: SettingsFragment(), tag)
                     true
                 }
 
@@ -119,7 +172,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkFragmentExistence(tag: String): Fragment? = supportFragmentManager.findFragmentByTag(tag)
+    private fun checkFragmentExistence(tag: String): Fragment? =
+        supportFragmentManager.findFragmentByTag(tag)
 
     private fun changeFragment(fragment: Fragment, tag: String) {
         supportFragmentManager
