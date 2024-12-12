@@ -28,7 +28,6 @@ rxjava_version = "3.0.10"
 room_rxjava_version = "2.6.1"
 rxjava_retrofit_adapter_version = "3.0.0"
 rxkotlin_version = "3.0.1"
-googleGmsGoogleServices = "4.4.2"
 firebaseMessaging = "24.0.3"
 
 [libraries]
@@ -66,5 +65,4 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 googleDevtoolsKsp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-googleGmsGoogleServices = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 

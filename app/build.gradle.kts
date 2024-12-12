@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleDevtoolsKsp)
     id("kotlin-parcelize")
-    alias(libs.plugins.googleGmsGoogleServices)
 }
 
 android {
@@ -40,6 +39,31 @@ android {
     buildFeatures{
         viewBinding = true
         buildConfig = true
+    }
+    flavorDimensions += "version"
+    productFlavors {
+        create("basic") {
+            dimension = "version"
+            applicationIdSuffix = ".basic"
+            versionNameSuffix = "-basic"
+        }
+        create("pro") {
+            dimension = "version"
+            applicationIdSuffix = ".pro"
+            versionNameSuffix = "-pro"
+        }
+    }
+    sourceSets {
+        getByName("basic") {
+            java {
+                srcDirs("src\\basic\\java")
+            }
+        }
+        getByName("pro") {
+            java {
+                srcDirs("src\\pro\\java")
+            }
+        }
     }
 }
 
